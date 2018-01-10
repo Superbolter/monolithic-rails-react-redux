@@ -16,6 +16,8 @@
   },
   "description": "A test app.",
   "version": "1.0.0",
-  "scripts": {},
+  "scripts": {
+		"postinstall": "webpack --config webpack.config.prod.js"
+	},
   "license": "MIT"
 }

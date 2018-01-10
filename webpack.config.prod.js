@@ -1,8 +1,7 @@
-var path = require('path');
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
-  devtool: 'eval-source-map',
   context: __dirname,
   entry: ['./app/frontend/javascripts/main.js'],
   output: {
@@ -14,8 +13,17 @@ module.exports = {
     extensions: ['.js']
   },
   plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
+    })
   ],
   module: {
     loaders: [
